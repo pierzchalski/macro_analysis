@@ -1,0 +1,7 @@
+[package]
+authors = ["pierzchalski <edward@pierzchalski.org>"]
+name = "macro_analysis"
+version = "0.1.0"
+
+[dependencies]
+structopt = "0.2.2"
