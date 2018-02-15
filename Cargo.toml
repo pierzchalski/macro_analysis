@@ -4,4 +4,9 @@ name = "macro_analysis"
 version = "0.1.0"
 
 [dependencies]
-structopt = "0.2.2"
+flate2 = "1.0.1"
+libflate = "0.1.14"
+quicli = "0.2.0"
+reqwest = "0.8.4"
+serde_json = "1.0.9"
+tar = "0.4.14"
