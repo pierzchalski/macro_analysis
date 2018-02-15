@@ -102,7 +102,7 @@ fn test_round_up() {
 
 fn get_cmd(opts: &Get) -> Result<()> {
     let client = CratesIoClient::new();
-    let top_crates = client.get_top(13)?;
+    let top_crates = client.get_top(opts.top)?;
     for krate in top_crates.iter() {
         let mut tarball = client.get_src(krate)?;
         tarball.unpack(&opts.dl_dir)?;
