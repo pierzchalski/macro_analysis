@@ -4,15 +4,16 @@ name = "macro_analysis"
 version = "0.1.0"
 
 [dependencies]
+glob = "0.2.11"
 libflate = "0.1.14"
 quicli = "0.2.0"
 reqwest = "0.8.4"
 serde_json = "1.0.9"
 tar = "0.4.14"
 
-[dependencies.syn]
-version = "0.12.12"
-features = ["derive", "full"]
-
 [dependencies.rustfmt-core]
 git = "https://github.com/rust-lang-nursery/rustfmt.git"
+
+[dependencies.syn]
+features = ["derive", "full"]
+version = "0.12.12"

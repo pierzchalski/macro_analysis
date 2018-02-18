@@ -10,6 +10,7 @@ use tar;
 pub struct Get {
     /// Count of top crates to download.
     top: usize,
+
     #[structopt(short = "o", long = "out-dir", parse(from_os_str),
             default_value = "downloads")]
     /// Download directory for crate source.

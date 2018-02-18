@@ -4,17 +4,22 @@ extern crate reqwest;
 extern crate serde_json;
 extern crate tar;
 extern crate libflate;
+extern crate glob;
 
 use quicli::prelude::*;
 
 mod commands;
-use commands::Get;
+use commands::{Get, Extract};
 
 #[derive(StructOpt, Debug)]
 enum Command {
     #[structopt(name = "get")]
     /// Download top crates from crates.io
     Get(Get),
+
+    #[structopt(name = "extract")]
+    /// Extract `macro_rules!` definitions
+    Extract(Extract),
 }
 
 #[derive(StructOpt, Debug)]
@@ -30,5 +35,6 @@ struct Options {
 main!(|opts: Options, log_level: verbosity| {
     match opts.cmd {
         Command::Get(ref get) => get.run()?,
+        Command::Extract(ref extract) => extract.run()?,
     };
 });
