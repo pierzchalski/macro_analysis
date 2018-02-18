@@ -1,15 +1,15 @@
+extern crate glob;
+extern crate libflate;
 #[macro_use]
 extern crate quicli;
 extern crate reqwest;
 extern crate serde_json;
 extern crate tar;
-extern crate libflate;
-extern crate glob;
 
 use quicli::prelude::*;
 
 mod commands;
-use commands::{Get, Extract};
+use commands::{Extract, Get};
 
 #[derive(StructOpt, Debug)]
 enum Command {

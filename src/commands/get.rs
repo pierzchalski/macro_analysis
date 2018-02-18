@@ -11,8 +11,7 @@ pub struct Get {
     /// Count of top crates to download.
     top: usize,
 
-    #[structopt(short = "o", long = "out-dir", parse(from_os_str),
-            default_value = "downloads")]
+    #[structopt(short = "o", long = "out-dir", parse(from_os_str), default_value = "downloads")]
     /// Download directory for crate source.
     dl_dir: PathBuf,
 }
@@ -38,14 +37,15 @@ impl CratesIoClient {
         let max_page = round_up(count, 100) / 100;
         let mut crates = Vec::new();
         for page in 1..(max_page + 1) {
-            let mut req = self.client.get("https://crates.io/api/v1/crates?per_page=100&sort=recent-downloads")
+            let mut req = self.client
+                .get("https://crates.io/api/v1/crates?per_page=100&sort=recent-downloads")
                 .query(&[("page", page)])
                 .send()?;
             let json: JsonValue = req.json()?;
             for krate in json["crates"].as_array().unwrap().iter() {
                 crates.push(Crate {
-                   id: krate["id"].as_str().unwrap().into(),
-                   max_version: krate["max_version"].as_str().unwrap().into(),
+                    id: krate["id"].as_str().unwrap().into(),
+                    max_version: krate["max_version"].as_str().unwrap().into(),
                 });
                 if crates.len() == count {
                     break;
@@ -56,7 +56,10 @@ impl CratesIoClient {
     }
 
     fn get_src(&self, krate: &Crate) -> Result<tar::Archive<Box<Read>>> {
-        let url = format!("https://crates.io/api/v1/crates/{}/{}/download", krate.id, krate.max_version);
+        let url = format!(
+            "https://crates.io/api/v1/crates/{}/{}/download",
+            krate.id, krate.max_version
+        );
         let req = self.client.get(&url).send()?;
         let decoder: Box<Read> = Box::new(gzip::Decoder::new(req)?);
         let tar = tar::Archive::new(decoder);
