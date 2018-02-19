@@ -5,6 +5,11 @@ extern crate quicli;
 extern crate reqwest;
 extern crate serde_json;
 extern crate tar;
+extern crate regex;
+#[macro_use]
+extern crate syn;
+#[macro_use]
+extern crate quote;
 
 use quicli::prelude::*;
 

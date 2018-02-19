@@ -1,10 +1,10 @@
-use quicli::prelude::*;
 use std::path::PathBuf;
 use std::io::Read;
 use serde_json::Value as JsonValue;
 use libflate::gzip;
 use reqwest;
 use tar;
+use quicli::prelude::*;
 
 #[derive(StructOpt, Debug)]
 pub struct Get {
